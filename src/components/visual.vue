@@ -2,11 +2,7 @@
 	.visual-wrapper{				
 		.visual-inner{
 			padding: 20px;
-		}
-		.filter-wrapper{
-			background-color: #F2F2F2;
-			padding: 15px;
-		}
+		}		
 		.step{			
 			margin-bottom: 15px;
 			.step-item{				
@@ -87,10 +83,9 @@
 </style>
 <template>
 	<div class="visual-wrapper">		
-		<div class="filter-wrapper">
-			<Filterm :filterData.sync="m_filter"></Filterm>
-			<el-button type="primary" v-stream:click="search$" ref="r_search">检索</el-button>
-		</div>	
+		<Filterm :filterData.sync="m_filter">
+			<el-button type="primary" v-stream:click="search$" ref="r_search">检索</el-button>		
+		</Filterm>		
 		<div class="visual-inner">
 			<div class="step">				
 				<div class="step-item" 
@@ -140,6 +135,9 @@
 				new Promise((reslove,reject)=>{
 					setTimeout(function(){
 						reslove([{
+							date: Math.random(),
+							item: Math.random()
+						},{
 							date: Math.random(),
 							item: Math.random()
 						}])
@@ -204,7 +202,7 @@
 				return Object.assign(e[1], {
 					currentPage: that.m_currentPage
 				})
-			}).filter((e)=>{							
+			}).filter(()=>{							
 				return !_searchFlag;
 			});
 			page$ = this.$watchAsObservable("m_currentPage").withLatestFrom(search$).map((e) => {
