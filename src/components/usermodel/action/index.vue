@@ -20,8 +20,8 @@
 		components: {},
 		created() {
 			var that = this,		
-				path = "/usermodel",
-				childPath = "action";				
+				path = routeConfig.routeConfig[0].path,
+				childPath = routeConfig.routeConfig[0].children[1].path;				
 			routeConfig.routeConfig.forEach((x) => {
 				if (x.path == path) {
 					x.children.forEach((y) => {

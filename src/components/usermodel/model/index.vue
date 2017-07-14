@@ -20,8 +20,8 @@
 		components: {},
 		created() {
 			var that = this,
-				path = "/usermodel",
-				childPath = "model";
+				path = routeConfig.routeConfig[0].path,
+				childPath = routeConfig.routeConfig[0].children[0].path;
 			routeConfig.routeConfig.forEach((x) => {				
 				if (x.path == path) {
 					x.children.forEach((y) => {
@@ -35,8 +35,7 @@
 						}
 					});
 				}
-			});
-			that.m_tabActive = location.hash.replace("#","");
+			});			
 		},
 		data() {
 			return {

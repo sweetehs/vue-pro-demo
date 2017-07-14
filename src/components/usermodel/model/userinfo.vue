@@ -4,10 +4,17 @@
 <script>
 	import Event from "../../../common/event.js";
 	export default{
-		created(){
+		created(){			
+			var that = this;
+			that._init();
 			Event.$on("usermodel.init",(filterData)=>{
-				debugger
+				that._init();
 			})
+		},
+		methods:{
+			_init(){				
+				alert("userinfo");
+			}
 		}
 	}
 </script>
