@@ -3,14 +3,13 @@ var gulp = require('gulp'),
 	vftp = require('vinyl-ftp'),
 	build = require("./build/build.js"),
 	ftpConfig = require("./ftp.json"),
-	packageJson = require('./package.json');;
+	packageJson = require('./package.json');
 gulp.task("build", () => {
 	build(() => {
 		console.log("----------------------");
 	})
 })
 gulp.task("ftp", () => {
-	console.log();
 	var conn = vftp.create({
 		host: ftpConfig.host,
 		port: ftpConfig.port,
@@ -25,5 +24,8 @@ gulp.task("ftp", () => {
 			base: '.',
 			buffer: false
 		})
-		.pipe(conn.dest(packageJson.to));
+		.pipe(conn.dest("/f2e/ftpstatic"));
 })
+gulp.task('all', ['build', 'ftp'], function() {
+	console.log("ALL COMPLETE!!");
+});

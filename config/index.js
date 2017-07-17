@@ -2,14 +2,15 @@
 var path = require('path');
 var packageJson = require('../package.json');
 
+
 module.exports = {
     build: {
         env: require('./prod.env'),
         index: path.resolve(__dirname, '../' + packageJson.name + '/index.html'),
         assetsRoot: path.resolve(__dirname, '../' + packageJson.name),
         assetsSubDirectory: 'static',
-        assetsPublicPath: '/',
-        productionSourceMap: true,
+        assetsPublicPath: 'http://img1.cache.netease.com/f2e/ftpstatic/golive',
+        productionSourceMap: false,
         // Gzip off by default as many popular static hosts such as
         // Surge or Netlify already gzip all static assets for you.
         // Before setting to `true`, make sure to:

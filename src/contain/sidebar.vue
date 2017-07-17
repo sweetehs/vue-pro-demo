@@ -28,12 +28,17 @@
 <template>
 	<div class="sidebar-wrapper">
 		<el-menu default-active="/" theme="light" router>			
-			<el-submenu index="/">
-				<template slot="title"><i class="el-icon-message"></i>推荐效果查询</template>				
+			<el-submenu index="/a">
+				<template slot="title">推荐效果查询</template>				
 				<el-menu-item index="/usermodel/model/info">用户模型</el-menu-item>
 				<el-menu-item index="/exportulog">用户日志导出</el-menu-item>
 				<el-menu-item index="/visual">推荐流程可视化</el-menu-item>				
-			</el-submenu>						
+			</el-submenu>		
+			<el-submenu index="/b">
+				<template slot="title">实用工具</template>				
+				<el-menu-item index="/1">视频推荐演示</el-menu-item>
+				<el-menu-item index="/2">用户ID List</el-menu-item>				
+			</el-submenu>					
 		</el-menu>		
 	</div>
 </template>
