@@ -1,5 +1,5 @@
 <style lang="less" scoped>
-		
+	
 </style>
 <template>
 	<div>
@@ -20,6 +20,17 @@
 		    <el-table-column prop="item" label="常用网络环境" ></el-table-column>
 		    <el-table-column prop="item" label="常用消费时段" ></el-table-column>
 	  	</el-table>
+	  	<header>用户勾选兴趣</header>
+	  	<el-table :data="l_device" stripe style="width: 100%">				    
+		    <el-table-column prop="date" label="设备号" ></el-table-column>
+		    <el-table-column prop="date" label="机型" ></el-table-column>
+		    <el-table-column prop="date" label="时间"></el-table-column>		    
+	  	</el-table>
+	  	<header>设备信息</header>
+	  	<el-table :data="l_interest" stripe style="width: 100%">				    
+		    <el-table-column prop="date" label="兴趣" ></el-table-column>
+		    <el-table-column prop="date" label="值" ></el-table-column>		    	   
+	  	</el-table>
 	</div>
 </template>
 <script>
@@ -34,10 +45,13 @@
 		},
 		methods:{
 			_getUserInfo(){
-				this.l_info = [{
+				var temp = [{
 					date: "aaa",
 					item: "bbb"
-				}]
+				}];
+				this.l_info = temp;
+				this.l_device = temp;
+				this.l_interest = temp;
 			},
 			_init(){								
 				this._getUserInfo();

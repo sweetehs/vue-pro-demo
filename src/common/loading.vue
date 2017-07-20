@@ -142,10 +142,17 @@
 	width: 100%;
 	height: 100%;
 	background: rgba(0,0,0,0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: 1s ease;
+  &.active{
+    visibility: visible;
+    opacity: 1;
+  }
 }
 </style>
 <template>
-	<div class="loading-wrapper" v-show="status">
+	<div class="loading-wrapper" :class="{active:status}">
 		<div class="sk-fading-circle">
 			<div class="sk-circle1 sk-circle"></div>
 			<div class="sk-circle2 sk-circle"></div>
@@ -176,7 +183,7 @@
 				that.status = false;
 			})		
 			event.$on("loading.show",()=>{
-				that.status = true;
+				that.status = false;
 			})	
 		}
 	}

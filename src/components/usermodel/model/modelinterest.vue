@@ -13,7 +13,7 @@
 		},
 		methods:{
 			_init(){				
-				alert("modelinterest");
+				// alert("modelinterest");
 			}
 		}
 	}

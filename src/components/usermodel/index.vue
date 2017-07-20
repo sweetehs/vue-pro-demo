@@ -8,6 +8,11 @@
 				display: inline-block;
 			}
 		}
+		header{
+			font-size: 16px;
+			margin: 10px 0;
+			color: #666;		
+		}
 	}
 </style>
 <template>
@@ -78,7 +83,9 @@
 		},
 		methods: {		
 			f_search(){
-				Event.$emit("usermodel.init",this.m_filter);
+				if(this.m_filter.key){
+					Event.$emit("usermodel.init",this.m_filter);	
+				}				
 			},	
 			f_tabClick(t, e) {	
 				location.hash = [t.name,this.l_tabChild[t.index].children[0].path].join("/");

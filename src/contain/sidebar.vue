@@ -27,7 +27,7 @@
 </style>
 <template>
 	<div class="sidebar-wrapper">
-		<el-menu default-active="/" theme="light" router>			
+		<el-menu :default-active="m_menuActive" theme="light" router>			
 			<el-submenu index="/a">
 				<template slot="title">推荐效果查询</template>				
 				<el-menu-item index="/usermodel/model/info">用户模型</el-menu-item>
@@ -44,10 +44,18 @@
 </template>
 <script>
 	export default {
-		data() {
+		data() {			
 			return {
-				
+				m_menuActive:"/"
 			}
-		}
+		},
+		created(){
+			var hash = location.hash.replace("#","");
+			if(hash.indexOf("/usermodel") !== -1){
+				this.m_menuActive = "/usermodel/model/info";
+			}else{
+				this.m_menuActive = hash;
+			}
+		},
 	}
 </script>

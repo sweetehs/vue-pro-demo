@@ -2,6 +2,7 @@
 	.visual-wrapper{				
 		.visual-inner{
 			padding: 20px;
+			// min-width: 1400px;
 		}		
 		.step{			
 			margin-bottom: 15px;
@@ -15,7 +16,7 @@
 				span{
 					display: inline-block;
 					vertical-align: top;
-					width: 100px;
+					width: 120px;
 					height: 60px;
 					line-height: 60px;
 					background: @color;
@@ -58,27 +59,46 @@
 					padding-left: 30px;
 					margin-left: -30px;
 					span{
-						width: 80px;
+						width: 100px;
 					}
 				}
 				&.active{
-					@activeColor: #026DA1;
+					@color: #026DA1;
 					span{
-						background: @activeColor;
+						background: @color;
 						color: #fff;
 					}
 					i.ir{											
-						border-color: transparent transparent transparent @activeColor;
+						border-color: transparent transparent transparent @color;
 					}
 					i.it{						
-						border-color: transparent @activeColor transparent transparent;						
+						border-color: transparent @color transparent transparent;						
 					}
 					i.ib{						
-						border-color: transparent transparent @activeColor transparent;						
+						border-color: transparent transparent @color transparent;						
+					}
+				}
+				&.disabled{
+					@color: #888;
+					span{
+						background: @color;
+						color: #fff;
+					}
+					i.ir{											
+						border-color: transparent transparent transparent @color;
+					}
+					i.it{						
+						border-color: transparent @color transparent transparent;						
+					}
+					i.ib{						
+						border-color: transparent transparent @color transparent;						
 					}
 				}
 			}
 		}
+	}
+	div.el-table{
+		font-size: 12px;
 	}
 </style>
 <template>
@@ -89,35 +109,36 @@
 		<div class="visual-inner">
 			<div class="step">				
 				<div class="step-item" 
-					v-for="(item,index) in m_tabList"  
-					:class="{active:m_stepIndex == index, middle:index != 0}">
+					v-for="(item,index) in l_tabList"  
+					:class="{active:m_stepIndex == index, middle:index != 0, disabled:!list}">
 					<i class="it" :class="{'fn-ihide':index == 0}"></i>
 					<i class="ib" :class="{'fn-ihide':index == 0}"></i>
 					<span @click="changeTabIndex(index)"><em>{{index}}</em>{{item.name}}{{item.count}}条</span><i class="ir"></i>
 				</div>				
 			</div>
 			<div class="table">
-				<el-table :data="list" stripe style="width: 100%">				    
-				    <el-table-column prop="date" label="标题" ></el-table-column>
-				    <el-table-column prop="date" label="vid" ></el-table-column>
-				    <el-table-column prop="date" label="原因"></el-table-column>
-				    <el-table-column prop="date" label="分类" ></el-table-column>
-				    <el-table-column prop="date" label="关键词" ></el-table-column>
-				    <el-table-column prop="date" label="来源" ></el-table-column>
-				    <el-table-column prop="item" label="点击数" ></el-table-column>
-				    <el-table-column prop="date" label="推荐数" ></el-table-column>
-				    <el-table-column prop="date" label="三俗值" ></el-table-column>
-				    <el-table-column prop="date" label="权重" ></el-table-column>
-				    <el-table-column prop="item" label="发布时间" ></el-table-column>
+				<el-table :data="list" stripe>		
+					<el-table-column type="index" width="60"></el-table-column>		    
+				    <el-table-column prop="title" label="标题" width="300"></el-table-column>
+				    <el-table-column prop="vid" label="vid" width="120"></el-table-column>
+				    <el-table-column prop="reason" label="原因" width="300"></el-table-column>
+				    <el-table-column prop="category" label="分类" ></el-table-column>
+				    <el-table-column prop="dkeys" label="关键词" ></el-table-column>
+				    <el-table-column prop="source" label="来源" ></el-table-column>
+				    <el-table-column prop="video_click_num" label="点击数" ></el-table-column>
+				    <el-table-column prop="video_rec_num" label="推荐数" ></el-table-column>
+				    <el-table-column prop="sansu_score" label="三俗值" ></el-table-column>
+				    <el-table-column prop="weights" label="权重" ></el-table-column>
+				    <el-table-column prop="video_publish_time" label="发布时间" width="160" ></el-table-column>
 			  	</el-table>
 			</div>
-			<div>
+			<div v-show="m_stepIndex == 0 && list">
 				<el-pagination		
 					@current-change="changePage"			
 					:current-page="m_currentPage"
-					:page-size="100"
+					:page-size="m_pageSize"
 					layout="prev, pager, next, jumper"
-					:total="1000">
+					:total="100">
 				</el-pagination>
 			</div>
 		</div>		
@@ -128,46 +149,25 @@
 	import Filter from "./filter.vue";
 	import util from "../common/util.js";
 	import event from "../common/event.js";
-	var promise$ = {
-		list(o){						
-			console.log(o)			
-			return Rx.Observable.fromPromise(
-				new Promise((reslove,reject)=>{
-					setTimeout(function(){
-						reslove([{
-							date: Math.random(),
-							item: Math.random()
-						},{
-							date: Math.random(),
-							item: Math.random()
-						}])
-					},100)					
-				})
-			)
-		}
-	}
+	import axios from "axios";	
 	export default {
 		data() {
 			return {
 				m_filter: {
-					key: "",
+					key: "860410037007721",
 					type: "0"
 				},
 				m_currentPage: 1,
+				m_pageSize: 20,
 				m_stepIndex: 0,
-				m_tabList:[{
+				l_tabList:[{
 					name:"召回",
-					count:"0"
+					count:"100"
 				},{
 					name:"过滤",
-					count:"0"
-				},{
-					name:"选取",
-					count:"0"
-				},{
-					name:"排序",
-					count:"0"
-				}]
+					count:"10"
+				}],
+				list:[]
 			}
 		},
 		components: {
@@ -183,40 +183,79 @@
 			}
 		},
 		mounted(){
-			this.$refs.r_search.$el.click();
+			// this.$refs.r_search.$el.click();
 		},
 		subscriptions() {
-			var that = this,
-				flag = false,
-				_searchFlag = false; // 为了防止手动变化m_currentPage,m_stepIndex引起的多次执行promise
-			var search$, page$, tab$, list$;
-			search$ = this.search$.map((e) => {
-				_searchFlag = true;
+			var that = this;											
+			var search$ = this.search$.map((e) => {				
 				that.m_currentPage = 1;
-				that.m_stepIndex = 0;
-				return util.getObjSelf(Object.assign(that.m_filter, {
+				that.m_stepIndex = 0;				
+				return util.getObjSelf(Object.assign({}, that.m_filter, {
 					currentPage: that.m_currentPage
 				}));
+			}).map((data)=>{
+				// 处理搜索字段
+				if(data.type == 0){
+					data.uid = data.key;
+				}else if(data.type == 1){
+					data.device_id = data.key;
+				}							
+				return data;
+			}).filter((data)=>{				
+				return !!data.key;
 			});
-			tab$ = this.$watchAsObservable("m_stepIndex").withLatestFrom(search$).map((e) => {
+			var tab$ = this.$watchAsObservable("m_stepIndex").withLatestFrom(search$).map((e) => {								
+				that.m_currentPage = 1;
 				return Object.assign(e[1], {
 					currentPage: that.m_currentPage
 				})
-			}).filter(()=>{							
-				return !_searchFlag;
 			});
-			page$ = this.$watchAsObservable("m_currentPage").withLatestFrom(search$).map((e) => {
+			var page$ = this.$watchAsObservable("m_currentPage").withLatestFrom(search$).map((e) => {
 				return Object.assign(e[1], {
 					currentPage: that.m_currentPage
 				})
-			}).filter(()=>{
-				return !_searchFlag;
 			});			
-			list$ = Rx.Observable.merge(search$, page$, tab$).do(()=>{
+			var list$ = Rx.Observable.merge(search$, page$, tab$).debounceTime(20).map((data)=>{
+				// 处理url
+				if(data.type == 0){
+					if(that.m_stepIndex == 0){
+						data.url = "/api/video/hundred/items";
+					}else if(that.m_stepIndex == 1){
+						data.url = "/api/recomm/video/uid";
+					}
+				}else if(data.type == 1){
+					if(that.m_stepIndex == 0){
+						data.url = "/api/video/hundred/items/deviceId";
+					}else if(that.m_stepIndex == 1){
+						data.url = "/api/recomm/video/device_id";
+					}
+				}				
+				return data;
+			}).do(()=>{
 				event.$emit("loading.show");
-			}).switchMap((o) => {				
-				return promise$.list(o).do(()=>{					
-					_searchFlag = false;
+			}).switchMap((params) => {					
+				var _params = Object.assign({},params),url = params.url;				
+				delete _params.currentPage;
+				delete _params.key;
+				delete _params.type;
+				delete _params.url;				
+				return Rx.Observable.fromPromise(
+					new Promise((reslove, reject) => {						
+						axios.get(url, {
+							params: _params
+						}).then((ajaxData) => {							
+							reslove(ajaxData);
+						}).catch((error)=>{							
+							reject(error)
+						})
+					})
+				).filter((data)=>{					
+					return !!data;
+				}).map((data) => {														
+					var start = (params.currentPage - 1) * that.m_pageSize,
+						end = params.currentPage * that.m_pageSize;
+					return data.slice(start, end);
+				}).do(() => {
 					event.$emit("loading.hide");
 				});
 			});
