@@ -28,7 +28,7 @@
 			</div>
 			<div class="form-item">
 				<span class="text"></span>
-				<div class="content"><el-button type="primary">导出日志</el-button>	</div>				
+				<div class="content"><el-button type="primary">导出日志</el-button></div>				
 			</div>
 		</div>
 	</div>

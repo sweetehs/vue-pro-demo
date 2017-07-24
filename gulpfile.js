@@ -5,7 +5,7 @@ var gulp = require('gulp'),
 	ftpConfig = require("./ftp.json"),
 	runSequence = require('gulp-sequence'),
 	packageJson = require('./package.json');
-gulp.task("ftp", () => {
+gulp.task("ftp", ["build"], () => {
 	console.log("ftp");
 	var conn = vftp.create({
 		host: ftpConfig.host,
@@ -23,8 +23,6 @@ gulp.task("ftp", () => {
 		})
 		.pipe(conn.dest("/f2e/ftpstatic"));
 })
-gulp.task("build", () => {
-	build(() => {
-		gulp.start("ftp");
-	})
+gulp.task("build", (cb) => {
+	build(cb)
 })

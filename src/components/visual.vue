@@ -98,8 +98,9 @@
 		}
 	}
 	div.el-table{
-		font-size: 12px;
+		font-size: 12px!important;
 	}
+	
 </style>
 <template>
 	<div class="visual-wrapper">		
@@ -113,7 +114,7 @@
 					:class="{active:m_stepIndex == index, middle:index != 0, disabled:!list}">
 					<i class="it" :class="{'fn-ihide':index == 0}"></i>
 					<i class="ib" :class="{'fn-ihide':index == 0}"></i>
-					<span @click="changeTabIndex(index)"><em>{{index}}</em>{{item.name}}{{item.count}}条</span><i class="ir"></i>
+					<span @click="f_changeTabIndex(index)"><em>{{index}}</em>{{item.name}}{{item.count}}条</span><i class="ir"></i>
 				</div>				
 			</div>
 			<div class="table">
@@ -121,7 +122,11 @@
 					<el-table-column type="index" width="60"></el-table-column>		    
 				    <el-table-column prop="title" label="标题" width="300"></el-table-column>
 				    <el-table-column prop="vid" label="vid" width="120"></el-table-column>
-				    <el-table-column prop="reason" label="原因" width="300"></el-table-column>
+				    <el-table-column label="原因" width="300">
+				    	<template scope="scope">
+				    		<span v-html="scope.row.reason"></span>
+				    	</template>
+				    </el-table-column>
 				    <el-table-column prop="category" label="分类" ></el-table-column>
 				    <el-table-column prop="dkeys" label="关键词" ></el-table-column>
 				    <el-table-column prop="source" label="来源" ></el-table-column>
@@ -134,13 +139,13 @@
 			</div>
 			<div v-show="m_stepIndex == 0 && list">
 				<el-pagination		
-					@current-change="changePage"			
+					@current-change="f_changePage"			
 					:current-page="m_currentPage"
 					:page-size="m_pageSize"
 					layout="prev, pager, next, jumper"
 					:total="100">
 				</el-pagination>
-			</div>
+			</div>			
 		</div>		
 	</div>
 </template>
@@ -153,8 +158,9 @@
 	export default {
 		data() {
 			return {
+				radio3: '上海',
 				m_filter: {
-					key: "860410037007721",
+					key: "863840028924236",
 					type: "0"
 				},
 				m_currentPage: 1,
@@ -175,10 +181,10 @@
 		},
 		domStreams: ["search$"],		
 		methods: {			
-			changePage(i){
+			f_changePage(i){
 				this.m_currentPage = i;
 			},
-			changeTabIndex(i){
+			f_changeTabIndex(i){
 				this.m_stepIndex = i;
 			}
 		},
@@ -263,5 +269,5 @@
 				list: list$
 			}
 		}
-	}
+	};
 </script>

@@ -30,6 +30,7 @@
             overflow: auto;                        
             box-sizing: border-box;
             position: relative;
+            overflow: auto;
         }
     }
 </style>
@@ -44,7 +45,9 @@
             </div>
             <div class="main-right">
                 <Loading></Loading>
-                <router-view name="main"></router-view>
+                <div class="main-content">
+                    <router-view name="main"></router-view>    
+                </div>                
             </div>
         </div>        
     </div>

@@ -1,32 +1,32 @@
 <style lang="less" scoped>	
 	.info{
 		text-align: left;
-	}
-	.img{
-		display: inline-block;
-		width: 160px;
-		height: 90px;
-		background: #F2F2F2;
-		position: relative;
-		.time{
-			width: 46px;
-			height: 22px;
-			line-height: 22px;
-			text-align: center;
-			position: absolute;
-			bottom: 0;
-			right: 0;
-			font-size: 12px;
-			background: #595959;
-			color: #fff;
+		.img{
+			display: inline-block;
+			width: 160px;
+			height: 90px;
+			background: #F2F2F2;
+			position: relative;
+			.time{
+				width: 46px;
+				height: 22px;
+				line-height: 22px;
+				text-align: center;
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				font-size: 12px;
+				background: #595959;
+				color: #fff;
+			}
 		}
-	}
-	.title{
-		display: inline-block;
-		vertical-align: top;
-		width: 200px;
-		margin-left: 5px;
-	}
+		.title{
+			display: inline-block;
+			vertical-align: top;
+			width: 200px;
+			margin-left: 5px;
+		}
+	}	
 	.status{
 		display: inline-block;
 		padding: 5px;			
