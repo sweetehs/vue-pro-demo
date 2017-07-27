@@ -24,7 +24,7 @@
 </style>
 <template>
 	<div class="topbar-wrapper">
-		<div class="logo">网易新闻视频推荐系统</div>
+		<div class="logo">短视频推荐后台</div>
 		<div class="action">
 			<a href="javascript:;">{{userName}}</a>&nbsp;|&nbsp;<a href="javascript:;">退出</a>
 		</div>		

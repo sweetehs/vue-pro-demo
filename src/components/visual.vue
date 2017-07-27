@@ -114,12 +114,12 @@
 					:class="{active:m_stepIndex == index, middle:index != 0, disabled:!list}">
 					<i class="it" :class="{'fn-ihide':index == 0}"></i>
 					<i class="ib" :class="{'fn-ihide':index == 0}"></i>
-					<span @click="f_changeTabIndex(index)"><em>{{index}}</em>{{item.name}}{{item.count}}条</span><i class="ir"></i>
+					<span @click="f_changeTabIndex(index)"><em>{{index+1}}</em>{{item.name}}{{item.count}}条</span><i class="ir"></i>
 				</div>				
 			</div>
 			<div class="table">
 				<el-table :data="list" stripe>		
-					<el-table-column type="index" width="60"></el-table-column>		    
+					<el-table-column label="序号" type="index" width="60"></el-table-column>		    
 				    <el-table-column prop="title" label="标题" width="300"></el-table-column>
 				    <el-table-column prop="vid" label="vid" width="120"></el-table-column>
 				    <el-table-column label="原因" width="300">
@@ -160,7 +160,7 @@
 			return {
 				radio3: '上海',
 				m_filter: {
-					key: "863840028924236",
+					key: "",
 					type: "0"
 				},
 				m_currentPage: 1,
