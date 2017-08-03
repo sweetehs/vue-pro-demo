@@ -36,9 +36,15 @@
 <script>
 	import Event from "../../../common/event.js";
 	export default{
+		data(){
+			return {
+				l_info:[],
+				l_device:[],
+				l_interest:[]
+			}
+		},
 		created(){			
-			var that = this;
-			that._init();
+			var that = this;			
 			Event.$on("usermodel.init",(filterData)=>{
 				that._init();
 			})

@@ -19,7 +19,7 @@ Vue.use(VueRx, Rx);
 Vue.use(ElementUI);
 Vue.directive(directiveDrag.name, directiveDrag);
 
-store.dispatch("GETUSER");
+store.dispatch("user_a_set");
 
 new Vue({
 	el: '#app',

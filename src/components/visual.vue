@@ -221,7 +221,7 @@
 					currentPage: that.m_currentPage
 				})
 			});			
-			var list$ = Rx.Observable.merge(search$, page$, tab$).debounceTime(20).map((data)=>{
+			var list$ = Rx.Observable.merge(search$, page$, tab$).debounceTime(50).map((data)=>{
 				// 处理url
 				if(data.type == 0){
 					if(that.m_stepIndex == 0){

@@ -1,19 +1,20 @@
+import axios from "axios";
 const user = {
 	state: {
-		userName: "XXXX"
+		userName: ".."
 	},
 	mutations: {
-		SET(state, data) {			
-			state.userName = data.userName;
+		user_m_set(state, data = {}) {
+			state.userName = data.user;
 		}
 	},
 	actions: {
-		GETUSER(context) {
-			setTimeout(() => {
-				context.commit("SET", {
-					userName: "zhaoweinan"
-				})
-			}, 1000)
+		user_a_set(context) {
+			axios.get("/api/auth/new/info", {
+				params: {}
+			}).then((ajaxData) => {
+				context.commit("user_m_set", ajaxData)
+			})
 		}
 	},
 	getters: {}

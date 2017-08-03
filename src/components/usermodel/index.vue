@@ -18,7 +18,7 @@
 <template>
 	<div class="usermodel-wrapper">
 		<Filterm :filterData.sync="m_filter">
-			<el-button type="primary" @click="f_search()">检索</el-button>
+			<el-button class="usermodel-search-btn" type="primary" @click="f_search()">检索</el-button>
 		</Filterm>
 		<div class="usermodel-inner">
 			<div>
@@ -68,7 +68,7 @@
 		watch:{
 			$route(to, from){				
 				this._setTabActive(to.path);
-				Event.$off("usermodel.init");
+				Event.$off("usermodel.init");				
 			}
 		},
 		data() {
@@ -82,8 +82,9 @@
 			}
 		},
 		methods: {		
-			f_search(){
-				if(this.m_filter.key){
+			f_search(){				
+				this.$store.dispatch("usermodel_a_set",this.m_filter);
+				if(this.m_filter.key){										
 					Event.$emit("usermodel.init",this.m_filter);	
 				}				
 			},	
