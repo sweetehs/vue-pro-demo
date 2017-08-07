@@ -1,17 +1,18 @@
 import axios from "axios";
 const usermodel = {
+	namespaced: true,
 	state: {
 		key: "",
 		type: "0"
 	},
 	mutations: {
-		usermodel_m_set(state, data = {}) {
+		filter_m_set(state, data = {}) {			
 			Object.assign(state, data);
 		}
 	},
 	actions: {
-		usermodel_a_set(context, data) {
-			context.commit("usermodel_m_set", data)
+		filter_a_set(context, data) {
+			context.commit("filter_m_set", data)
 		}
 	},
 	getters: {}

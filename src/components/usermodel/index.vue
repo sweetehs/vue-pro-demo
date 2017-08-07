@@ -83,7 +83,7 @@
 		},
 		methods: {		
 			f_search(){				
-				this.$store.dispatch("usermodel_a_set",this.m_filter);
+				this.$store.dispatch("usermodel/filter_a_set",this.m_filter);
 				if(this.m_filter.key){										
 					Event.$emit("usermodel.init",this.m_filter);	
 				}				
