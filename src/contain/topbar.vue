@@ -26,16 +26,20 @@
 	<div class="topbar-wrapper">
 		<div class="logo">短视频推荐后台</div>
 		<div class="action">
-			<a href="javascript:;">{{userName}}</a>&nbsp;|&nbsp;<a href="javascript:;">退出</a>
+			<a href="javascript:;">{{userName}}</a>&nbsp;|&nbsp;<a href="/api/auth/logout">退出</a>
 		</div>		
 	</div>
 </template>
 <script>	
+ 	import axios from "axios";
 	export default{		
 		computed: {
 			userName(){
 				return this.$store.state.user.userName
 			}
+		},
+		methods: {
+			
 		}
 	}
 </script>

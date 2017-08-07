@@ -4,7 +4,7 @@ const user = {
 		userName: ".."
 	},
 	mutations: {
-		user_m_set(state, data = {}) {
+		user_m_set(state, data = {}) {			
 			state.userName = data.user;
 		}
 	},
