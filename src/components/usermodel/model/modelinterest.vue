@@ -67,6 +67,9 @@
 				if(filterData.type == 0){
 					url = "/api/interest/model/uid";
 					params.uid = filterData.key;
+				}else if(1){
+					url = "/api/interest/model/device_id";
+					params.device_id = filterData.key;
 				}
 				axios.get(url,{
 					params:params
