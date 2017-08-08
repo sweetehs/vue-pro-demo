@@ -1,35 +1,46 @@
 <style lang="less" scoped>
 	.table{
-		width: 300px;
+		width: 400px;
 		margin: 0 20px;
-		display: inline-block;
+		display: inline-block;			
+		vertical-align: top;
+		&>div{
+			height: 500px;
+			overflow: auto;
+		}
 	}
 </style>
 <template>
 	<div class="fn-align-center">
-		<div class="table">
+		<!-- <div class="table">
 			<header>当前模型</header>
-			<el-table :data="l_list" stripe style="width:100%;">		
-				<el-table-column type="index" width="60"></el-table-column>		    			   
-				<el-table-column prop="label_name" label="name"></el-table-column>		
-				<el-table-column prop="label_score" label="value"></el-table-column>		
-		  	</el-table>
-		</div>
+			<div>
+				<el-table :data="l_list0" stripe style="width:100%;">		
+					<el-table-column type="index" width="60"></el-table-column>		    			   
+					<el-table-column prop="label_name" label="name"></el-table-column>		
+					<el-table-column prop="label_score" label="value"></el-table-column>		
+			  	</el-table>
+			</div>			
+		</div> -->
 		<div class="table">
 			<header>近期模型</header>
-			<el-table :data="l_list" stripe style="width:100%;">		
-				<el-table-column type="index" width="60"></el-table-column>		    			   
-				<el-table-column prop="label_name" label="name"></el-table-column>		
-				<el-table-column prop="label_score" label="value"></el-table-column>		
-		  	</el-table>
+			<div>
+				<el-table :data="l_list1" stripe style="width:100%;">		
+					<el-table-column label="序号" type="index" width="60"></el-table-column>		    			   
+					<el-table-column prop="label_name" label="name"></el-table-column>		
+					<el-table-column prop="label_score" label="value"></el-table-column>		
+			  	</el-table>
+			</div>
 		</div>
 		<div class="table">
 			<header>长期模型</header>
-			<el-table :data="l_list" stripe style="width:100%;">		
-				<el-table-column type="index" width="60"></el-table-column>		    			   
-				<el-table-column prop="label_name" label="name"></el-table-column>		
-				<el-table-column prop="label_score" label="value"></el-table-column>		
-		  	</el-table>
+			<div>
+				<el-table :data="l_list2" stripe style="width:100%;">		
+					<el-table-column label="序号" type="index" width="60"></el-table-column>		    			   
+					<el-table-column prop="label_name" label="name"></el-table-column>		
+					<el-table-column prop="label_score" label="value"></el-table-column>		
+			  	</el-table>
+			</div>
 		</div>
 	</div>
 </template>
@@ -39,7 +50,9 @@
 	export default{
 		data(){
 			return {
-				l_list:[]
+				l_list0:[],
+				l_list1:[],
+				l_list2:[]
 			}
 		},
 		created(){			
@@ -57,8 +70,10 @@
 				}
 				axios.get(url,{
 					params:params
-				}).then((ajaxData)=>{
-					that.l_list = ajaxData;
+				}).then((ajaxData)=>{							
+					that.l_list0 = ajaxData[0].interestLables;
+					that.l_list1 = ajaxData[1].interestLables;
+					that.l_list2 = ajaxData[2].interestLables;
 				})
 			},
 			_init(filterData){				
