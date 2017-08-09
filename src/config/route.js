@@ -17,6 +17,8 @@ import Actionhistory from "../components/usermodel/action/history.vue"
 import Actioncomment from "../components/usermodel/action/comment.vue"
 import Actionshare from "../components/usermodel/action/share.vue"
 import Actioncollect from "../components/usermodel/action/collect.vue"
+
+import Videorecommend from "../components/videorecommend.vue"
 Vue.use(Router);
 let routeConfig = [{
 	path: "/usermodel",
@@ -73,25 +75,25 @@ let routeConfig = [{
 			components: {
 				useraction: Actionrecommend
 			}
-		},{
+		}, {
 			path: "history",
 			name: "历史记录",
 			components: {
 				useraction: Actionhistory
 			}
-		},{
+		}, {
 			path: "comment",
 			name: "评论记录",
 			components: {
 				useraction: Actioncomment
 			}
-		},{
+		}, {
 			path: "share",
 			name: "用户分享",
 			components: {
 				useraction: Actionshare
 			}
-		},{
+		}, {
 			path: "collect",
 			name: "用户收藏",
 			components: {
@@ -110,6 +112,12 @@ let routeConfig = [{
 	name: "推荐流程可视化",
 	components: {
 		main: Visual
+	}
+}, {
+	path: "/videorecommend",
+	name: "视频推荐演示",
+	components: {
+		main: Videorecommend
 	}
 }];
 export default {

@@ -7,12 +7,7 @@
 			.el-tabs{
 				display: inline-block;
 			}
-		}
-		header{
-			font-size: 16px;
-			margin: 10px 0;
-			color: #666;		
-		}
+		}		
 	}
 </style>
 <template>

@@ -12,12 +12,14 @@ import "./config/axios.js";
 import App from './contain/App';
 
 import directiveDrag from "./directive/drag.js";
+import directiveTimelong from "./directive/timelong.js";
 import store from "./store/store.js";
 
 Vue.config.productionTip = false;
 Vue.use(VueRx, Rx);
 Vue.use(ElementUI);
 Vue.directive(directiveDrag.name, directiveDrag);
+Vue.directive(directiveTimelong.name, directiveTimelong);
 
 store.dispatch("user_a_set");
 

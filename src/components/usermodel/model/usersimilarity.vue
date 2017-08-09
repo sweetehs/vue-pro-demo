@@ -1,11 +1,13 @@
 <style>
-	
+	table{
+		text-align: center;
+	}
 </style>
 <template>
 	<div>
 		<div class="table">
 			<el-table :data="l_list" stripe style="width:100%;">		
-				<el-table-column type="index" width="60"></el-table-column>		    			   
+				<el-table-column label="序号" type="index" width="60"></el-table-column>		    			   
 				<el-table-column prop="uid" label="neighborUseKey"></el-table-column>		
 				<el-table-column prop="score" label="score"></el-table-column>		
 		  	</el-table>
@@ -33,6 +35,9 @@
 				if(filterData.type == 0){
 					url = "/api/similar/user/uid";
 					params.uid = filterData.key;
+				}else{
+					url = "/api/similar/user/device_id";
+					params.device_id = filterData.key;
 				}
 				axios.get(url,{
 					params:params

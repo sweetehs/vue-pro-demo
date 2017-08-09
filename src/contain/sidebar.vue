@@ -36,7 +36,7 @@
 			</el-submenu>		
 			<el-submenu index="/b">
 				<template slot="title">实用工具</template>				
-				<el-menu-item index="/1">视频推荐演示</el-menu-item>
+				<el-menu-item index="/videorecommend">视频推荐演示</el-menu-item>
 				<el-menu-item index="/2">用户ID List</el-menu-item>				
 			</el-submenu>					
 		</el-menu>		

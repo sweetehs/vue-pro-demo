@@ -33,6 +33,10 @@ module.exports = {
             '/api': {
                 target: 'http://test.elect.netease.com',
                 changeOrigin: true,               
+            },
+            '/flow': {
+                target: 'http://test.elect.netease.com',
+                changeOrigin: true,               
             }
         },
         // CSS Sourcemaps off by default because relative paths are "buggy"
